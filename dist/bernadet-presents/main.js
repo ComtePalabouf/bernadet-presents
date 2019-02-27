@@ -63,7 +63,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"col\">\r\n    <h1>Bienvenue sur le nouveau site de tirage de cadeaux !!</h1>\r\n  </div>\r\n  <app-name-list></app-name-list>\r\n</div>\r\n"
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col text-center\">\r\n      <h1>Bienvenue sur le nouveau site de tirage de cadeaux !!</h1>\r\n    </div>\r\n  </div>\r\n\r\n  <hr />\r\n\r\n  <app-name-list></app-name-list>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -129,6 +129,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _components_name_list_name_list_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/name-list/name-list.component */ "./src/app/components/name-list/name-list.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+
 
 
 
@@ -143,8 +145,14 @@ var AppModule = /** @class */ (function () {
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"], _components_name_list_name_list_component__WEBPACK_IMPORTED_MODULE_7__["NameListComponent"]],
-            imports: [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbModule"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["BrowserModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClientModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"]],
-            providers: [],
+            imports: [
+                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbModule"],
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["BrowserModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClientModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"]
+            ],
+            providers: [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbRadioGroup"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
         })
     ], AppModule);
@@ -162,7 +170,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col\">\n    <button\n      type=\"button\"\n      *ngFor=\"let name of names\"\n      class=\"btn btn-outline-secondary mr-2\"\n    >\n      {{ name }}\n    </button>\n  </div>\n</div>\n"
+module.exports = "<div class=\"row\">\r\n  <div class=\"col text-center\">\r\n    <div\r\n      class=\"btn-group btn-group-toggle\"\r\n      ngbRadioGroup\r\n      name=\"radioBasic\"\r\n      [(ngModel)]=\"selectedName\"\r\n    >\r\n      <label ngbButtonLabel class=\"btn-primary\" *ngFor=\"let name of names\">\r\n        <input ngbButton type=\"radio\" [value]=\"name\" />{{ name }}\r\n      </label>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<hr />\r\n\r\n<div class=\"row\">\r\n  <div class=\"col text-center\">\r\n    <button type=\"button\" class=\"btn btn-primary\">\r\n      Je suis prêt.e, lançons le tirage au sort\r\n    </button>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 

@@ -8,6 +8,7 @@ import { NamesService } from "src/app/services/names.service";
 })
 export class NameListComponent implements OnInit {
   names: string[];
+  selectedName: string;
 
   constructor(private nameService: NamesService) {}
 

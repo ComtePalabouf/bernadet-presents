@@ -1,11 +1,24 @@
 <div class="row">
-  <div class="col">
-    <button
-      type="button"
-      *ngFor="let name of names"
-      class="btn btn-outline-secondary mr-2"
+  <div class="col text-center">
+    <div
+      class="btn-group btn-group-toggle"
+      ngbRadioGroup
+      name="radioBasic"
+      [(ngModel)]="selectedName"
     >
-      {{ name }}
+      <label ngbButtonLabel class="btn-primary" *ngFor="let name of names">
+        <input ngbButton type="radio" [value]="name" />{{ name }}
+      </label>
+    </div>
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col text-center">
+    <button type="button" class="btn btn-primary">
+      Je suis prêt.e, lançons le tirage au sort
     </button>
   </div>
 </div>
