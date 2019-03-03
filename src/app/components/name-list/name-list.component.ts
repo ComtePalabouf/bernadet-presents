@@ -1,3 +1,4 @@
+import { Gift } from './../../models/gift';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NamesService } from 'src/app/services/names.service';
 import { GiftService } from './../../services/gift.service';
@@ -12,6 +13,8 @@ export class NameListComponent implements OnInit {
   selectedName: string;
   giftName: string;
 
+  private giftList: Gift[];
+
   @Output() drawEvent = new EventEmitter<any>();
 
   constructor(
@@ -22,10 +25,19 @@ export class NameListComponent implements OnInit {
   async ngOnInit() {
     const result = await this.nameService.getNames();
     this.names = result.names.result;
+    this.giftList = await this.giftService.getGifts();
   }
 
   async onClick() {
     this.giftName = await this.giftService.draw(this.selectedName);
-    this.drawEvent.emit(this.giftName);
+    this.drawEvent.emit();
+    this.giftList = await this.giftService.getGifts();
+  }
+
+  isDrawButtonDisabled() {
+    return (
+      !this.selectedName ||
+      this.giftList.map(gift => gift.from).includes(this.selectedName)
+    );
   }
 }

@@ -18,7 +18,7 @@
     <button
       type="button"
       class="btn btn-primary"
-      [disabled]="!selectedName"
+      [disabled]="isDrawButtonDisabled()"
       (click)="onClick()"
     >
       Je suis prêt.e, lançons le tirage au sort

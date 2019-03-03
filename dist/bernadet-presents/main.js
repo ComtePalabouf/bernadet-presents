@@ -63,7 +63,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col text-center\">\r\n      <h1>Bienvenue sur le nouveau site de tirage de cadeaux !!</h1>\r\n    </div>\r\n  </div>\r\n\r\n  <hr />\r\n\r\n  <app-name-list (drawEvent)=\"giftList.loadGifts($event)\"></app-name-list>\r\n\r\n  <app-gift-list #giftList></app-gift-list>\r\n</div>\r\n"
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col text-center\">\r\n      <h1>Bienvenue sur le nouveau site de tirage de cadeaux !!</h1>\r\n    </div>\r\n  </div>\r\n\r\n  <hr />\r\n\r\n  <app-name-list (drawEvent)=\"giftList.loadGifts()\"></app-name-list>\r\n\r\n  <app-gift-list #giftList></app-gift-list>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -94,11 +94,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
-        this.title = "bernadet-presents";
+        this.title = 'bernadet-presents';
     }
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: "app-root",
+            selector: 'app-root',
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
             styles: [__webpack_require__(/*! ./app.component.less */ "./src/app/app.component.less")]
         }),
@@ -219,7 +219,7 @@ var GiftListComponent = /** @class */ (function () {
             });
         });
     };
-    GiftListComponent.prototype.loadGifts = function (event) {
+    GiftListComponent.prototype.loadGifts = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var _a;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
@@ -256,7 +256,7 @@ var GiftListComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row py-2\">\r\n  <div class=\"col text-center\">\r\n    <div\r\n      class=\"btn-group btn-group-toggle\"\r\n      ngbRadioGroup\r\n      name=\"radioBasic\"\r\n      [(ngModel)]=\"selectedName\"\r\n    >\r\n      <label ngbButtonLabel class=\"btn-primary\" *ngFor=\"let name of names\">\r\n        <input ngbButton type=\"radio\" [value]=\"name\" />{{ name }}\r\n      </label>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row py-2\">\r\n  <div class=\"col text-center\">\r\n    <button\r\n      type=\"button\"\r\n      class=\"btn btn-primary\"\r\n      [disabled]=\"!selectedName\"\r\n      (click)=\"onClick()\"\r\n    >\r\n      Je suis prêt.e, lançons le tirage au sort\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row py-2\">\r\n  <div class=\"col text-center\">\r\n    <ngb-alert *ngIf=\"giftName\" type=\"info\">\r\n      Le tirage est fait, {{ selectedName }} ! Tu dois offrir un cadeau à\r\n      {{ giftName }}\r\n    </ngb-alert>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"row py-2\">\r\n  <div class=\"col text-center\">\r\n    <div\r\n      class=\"btn-group btn-group-toggle\"\r\n      ngbRadioGroup\r\n      name=\"radioBasic\"\r\n      [(ngModel)]=\"selectedName\"\r\n    >\r\n      <label ngbButtonLabel class=\"btn-primary\" *ngFor=\"let name of names\">\r\n        <input ngbButton type=\"radio\" [value]=\"name\" />{{ name }}\r\n      </label>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row py-2\">\r\n  <div class=\"col text-center\">\r\n    <button\r\n      type=\"button\"\r\n      class=\"btn btn-primary\"\r\n      [disabled]=\"isDrawButtonDisabled()\"\r\n      (click)=\"onClick()\"\r\n    >\r\n      Je suis prêt.e, lançons le tirage au sort\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row py-2\">\r\n  <div class=\"col text-center\">\r\n    <ngb-alert *ngIf=\"giftName\" type=\"info\">\r\n      Le tirage est fait, {{ selectedName }} ! Tu dois offrir un cadeau à\r\n      {{ giftName }}\r\n    </ngb-alert>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -297,13 +297,17 @@ var NameListComponent = /** @class */ (function () {
     }
     NameListComponent.prototype.ngOnInit = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var result;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
+            var result, _a;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
                     case 0: return [4 /*yield*/, this.nameService.getNames()];
                     case 1:
-                        result = _a.sent();
+                        result = _b.sent();
                         this.names = result.names.result;
+                        _a = this;
+                        return [4 /*yield*/, this.giftService.getGifts()];
+                    case 2:
+                        _a.giftList = _b.sent();
                         return [2 /*return*/];
                 }
             });
@@ -311,19 +315,27 @@ var NameListComponent = /** @class */ (function () {
     };
     NameListComponent.prototype.onClick = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var _a;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
-                switch (_b.label) {
+            var _a, _b;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_c) {
+                switch (_c.label) {
                     case 0:
                         _a = this;
                         return [4 /*yield*/, this.giftService.draw(this.selectedName)];
                     case 1:
-                        _a.giftName = _b.sent();
-                        this.drawEvent.emit(this.giftName);
+                        _a.giftName = _c.sent();
+                        this.drawEvent.emit();
+                        _b = this;
+                        return [4 /*yield*/, this.giftService.getGifts()];
+                    case 2:
+                        _b.giftList = _c.sent();
                         return [2 /*return*/];
                 }
             });
         });
+    };
+    NameListComponent.prototype.isDrawButtonDisabled = function () {
+        return (!this.selectedName ||
+            this.giftList.map(function (gift) { return gift.from; }).includes(this.selectedName));
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
@@ -403,7 +415,7 @@ var GiftService = /** @class */ (function () {
                             return JSON.parse(value).to;
                         });
                         names = namesResult.result.filter(function (value) {
-                            return value != name && !gifts_1.includes(value);
+                            return value !== name && !gifts_1.includes(value);
                         });
                         drawnName = names[this.getRandomInt(names.length)];
                         gift = { from: name, to: drawnName };

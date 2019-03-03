@@ -16,7 +16,7 @@ export class GiftListComponent implements OnInit {
     this.loadGifts();
   }
 
-  async loadGifts(event?: any) {
+  async loadGifts() {
     this.gifts = await this.giftService.getGifts();
   }
 }
