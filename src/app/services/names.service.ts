@@ -9,10 +9,14 @@ export class NamesService {
 
   async getNames() {
     try {
-      const result:any = await this.http.get("/api/names").toPromise();
-      return {names: result};
+      const result: any = await this.http.get("/api/names").toPromise();
+      return { names: result };
     } catch (error) {
       console.error(error);
     }
+  }
+
+  getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
   }
 }

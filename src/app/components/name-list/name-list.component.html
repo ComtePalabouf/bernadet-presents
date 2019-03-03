@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row py-2">
   <div class="col text-center">
     <div
       class="btn-group btn-group-toggle"
@@ -13,12 +13,24 @@
   </div>
 </div>
 
-<hr />
-
-<div class="row">
+<div class="row py-2">
   <div class="col text-center">
-    <button type="button" class="btn btn-primary">
+    <button
+      type="button"
+      class="btn btn-primary"
+      [disabled]="!selectedName"
+      (click)="onClick()"
+    >
       Je suis prêt.e, lançons le tirage au sort
     </button>
+  </div>
+</div>
+
+<div class="row py-2">
+  <div class="col text-center">
+    <ngb-alert *ngIf="giftName" type="info">
+      Le tirage est fait, {{ selectedName }} ! Tu dois offrir un cadeau à
+      {{ giftName }}
+    </ngb-alert>
   </div>
 </div>
