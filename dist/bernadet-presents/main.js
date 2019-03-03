@@ -176,7 +176,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<hr />\n\n<div class=\"row py-2\">\n  <div class=\"col text-center\">\n    <div *ngFor=\"let gift of gifts\">\n      {{ gift.from }} => {{ gift.to }}\n    </div>\n  </div>\n</div>\n"
+module.exports = "<hr />\n\n<div class=\"row py-2\">\n  <div class=\"col text-center\">\n    <div class=\"card\">\n      <ul class=\"list-group list-group-flush\">\n        <li *ngFor=\"let gift of gifts\" class=\"list-group-item\">\n          {{ gift.from }} doit offrir un cadeau à {{ gift.to }}\n        </li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
