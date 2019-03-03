@@ -1,4 +1,3 @@
-import { Gift } from './../models/gift';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -31,7 +30,7 @@ export class GiftService {
       });
 
       const names: string[] = namesResult.result.filter(value => {
-        return value != name && !gifts.includes(value);
+        return value !== name && !gifts.includes(value);
       });
 
       const drawnName = names[this.getRandomInt(names.length)];
