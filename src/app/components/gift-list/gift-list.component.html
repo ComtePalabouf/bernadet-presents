@@ -1,13 +1,15 @@
 <hr />
 
-<div class="row py-2">
-  <div class="col text-center">
-    <div class="card">
-      <ul class="list-group list-group-flush">
-        <li *ngFor="let gift of gifts" class="list-group-item">
-          {{ gift.from }} doit offrir un cadeau à {{ gift.to }}
-        </li>
-      </ul>
+<ng-container *ngIf="gifts?.length > 0">
+  <div class="row py-2">
+    <div class="col text-center">
+      <div class="card">
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let gift of gifts" class="list-group-item">
+            {{ gift.from }} doit offrir un cadeau à {{ gift.to }}
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
+</ng-container>
